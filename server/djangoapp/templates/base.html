@@ -40,13 +40,17 @@
                         <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
                             {% csrf_token %}
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Username" name="username" >
-                                <input type="password" class="form-control" placeholder="Password" name="psw" >
-                                <li>
-                                <button class="btn btn-primary" type="submit">Login</button>
+                                <li style="margin-left: 10px;">
+                                    <input type="text" class="form-control" placeholder="Username" name="username" >
+                                </li>
+                                <li style="margin-left: 10px;">
+                                    <input type="password" class="form-control" placeholder="Password" name="psw" >
+                                </li>
+                                <li style="margin-left: 10px;">
+                                    <button class="btn btn-primary" type="submit">Login</button>
                                 </li>
                                 <li>
-                                <a class="btn btn-link" style="font-size:15px" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                                    <a class="btn btn-link" style="font-size:15px" href="{% url 'djangoapp:registration' %}">Sign Up</a>
                                 </li>
                             </div>
                         </form>
