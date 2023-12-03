@@ -130,33 +130,20 @@ def get_dealer_reviews_from_cf(url, dealer_id):
         #print(reviews)
         # For every review in the response
         for review in reviews:
-            # Create a DealerReview object from the data
-            # These values must be present
-            review_content = review["review"]
-            id = review["id"]
-            name = review["name"]
-            purchase = review["purchase"]
             dealership = review["dealership"]
             if dealership == dealer_id:
 
                 try:
-                    # These values may be missing
-                    car_make = review["car_make"]
-                    car_model = review["car_model"]
-                    car_year = review["car_year"]
-                    purchase_date = review["purchase_date"]
-                    #sentiment = review["sentiment"]
-                    # Creating a review object
-                    review_obj = DealerReview(dealership=dealership, id=id, name=name, 
-                                            purchase=purchase, review=review_content, car_make=car_make, 
-                                            car_model=car_model, car_year=car_year, purchase_date=purchase_date
+                    review_obj = DealerReview(dealership=dealership, id=review["id"], name=review["name"], 
+                                            purchase=review["purchase"], review=review["review"], car_make=review["car_make"], 
+                                            car_model=review["car_model"], car_year=review["car_year"], purchase_date=review["purchase_date"]
                                             )
 
                 except KeyError:
                     print("Something is missing from this review. Using default values.")
                     # Creating a review object with some default values
                     review_obj = DealerReview(
-                        dealership=dealership, id=id, name=name, purchase=purchase, review=review_content)
+                        dealership=dealership, id=review["id"], name=review["name"], purchase=review["purchase"], review=review["review"])
 
                 # Analysing the sentiment of the review object's review text and saving it to the object attribute "sentiment"
                 review_obj.sentiment = analyze_review_sentiments(review_obj.review)

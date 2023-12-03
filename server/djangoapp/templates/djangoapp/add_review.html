@@ -6,8 +6,10 @@
         <h1>Add a review about {{dealer.full_name}}</h1>
         <br>
         <!--review form -->
-        <form action="/djangoapp/dealer/{{dealer.id}}/add-review/" method="post">
+        {% for deal in dealer %}
+        <form action="/djangoapp/dealer/{{deal.id}}/add-review/" method="post">
             {% csrf_token %}
+        {% endfor %}
             <div class="form-group">
                 <label for="content"><b>Enter the review content:</b></label>
                 <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
