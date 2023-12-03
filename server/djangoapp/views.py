@@ -105,11 +105,13 @@ def get_dealer_details(request, dealer_id):
     if request.method == "GET":
         context = {}
         url = "https://us-south.functions.appdomain.cloud/api/v1/web/ff5958e3-f780-4c19-bb7e-26530708ae27/dealership-package/get-review.json"
+        url2 = "https://us-south.functions.appdomain.cloud/api/v1/web/ff5958e3-f780-4c19-bb7e-26530708ae27/dealership-package/get-dealership"
         # Get dealers from the URL
         reviews = get_dealer_reviews_from_cf(url, dealer_id=dealer_id)
         context = {
             "reviews":  reviews, 
-            "dealer_id": dealer_id
+            "dealer_id": dealer_id,
+            "dealer": get_dealer_by_id(url2, dealer_id=dealer_id),
         }
         # Concat all dealer's short name
         #review_names = ' '.join([rev.review for rev in reviews])

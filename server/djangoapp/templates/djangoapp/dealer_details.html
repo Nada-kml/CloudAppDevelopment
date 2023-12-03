@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Reviews for {{dealer.full_name}}</h1>
+{% for deal in dealer %}
+<h1>Reviews for {{deal.full_name}}</h1>
 {% if reviews %}
     {% if user.is_authenticated %}
         <div style="margin: 10px;">
@@ -40,5 +41,6 @@
         </div>
     {% endif %}
 {% endif %}
+{% endfor %}
 {% endblock %}
 

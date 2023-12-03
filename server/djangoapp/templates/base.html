@@ -11,7 +11,12 @@
     <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-
+    <style>
+        .navbar-nav a.active {
+            /*font-weight: bold;*/
+            color: black; /* Change to your desired active color */
+        }
+    </style>
 </head>
 
     <body class="text-center">
@@ -59,6 +64,25 @@
                 </div>
         </div>
       </nav>
+      <script>
+        // Get all navigation links
+        const navLinks = document.querySelectorAll('.navbar-nav a');
+    
+        // Add click event listener to each link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                // Allow the default link behavior
+                // The browser will handle navigating to the specified URL
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+
+                // Add the "active" class to the clicked link
+                this.classList.add('active');
+            });
+        });
+      </script>
+    
     <!-- Main content. HTML inserted from extensions of base.html -->
     <main role="main" class="row justify-content-center">
         <div class="main col-lg-9 col-md-12">
